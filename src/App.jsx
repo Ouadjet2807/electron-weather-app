@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Forecast from "./components/Forecast";
 import { publicIp, publicIpv4, publicIpv6 } from "public-ip";
+import AudioPlayer from "./components/AudioPlayer";
 
 export default function App() {
   const [weatherData, setWeatherData] = useState({});
   const [loading, setLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState();
+  const [title, setTitle] = useState([]);
 
   const success = (pos) => {
     const crd = pos.coords;
@@ -18,32 +20,18 @@ export default function App() {
   };
 
   useEffect(() => {
-    console.log(navigator.geolocation.getCurrentPosition(success));
-    const interval = setInterval(() => {
-      setCurrentTime(new Date().toLocaleTimeString().slice(0, 10));
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  useEffect(() => {
     const getLocation = async () => {
-    const IP = await publicIpv4()
+      const IP = await publicIpv4();
 
-    try {
-        const response = await axios.get(`http://ip-api.com/json/${IP}`)
-        return response.data.city
-    }
-    catch (error) {
+      try {
+        const response = await axios.get(`http://ip-api.com/json/${IP}`);
+        return response.data.city;
+      } catch (error) {
         console.log(error);
-    }
-
-    }
+      }
+    };
     const fetchWeatherData = async () => {
-
-      const city = await getLocation()
+      const city = await getLocation();
       console.log(city);
 
       try {
@@ -58,9 +46,27 @@ export default function App() {
       }
     };
     fetchWeatherData();
+
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString().slice(0, 10));
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
+  useEffect(() => {
+    if (Object.keys(weatherData).length == 0) return;
+    setTitle([]);
+    let titleStr = ` ${weatherData.location.name}, ${weatherData.location.region} - ${weatherData.location.country} | `;
+    for (let i = 0; i < 10; i++) {
+      setTitle((prev) => [...prev, titleStr]);
+    }
+  }, [weatherData]);
+
   console.log(weatherData);
+  console.log(title);
 
   return (
     <div>
@@ -73,20 +79,38 @@ export default function App() {
               alt=""
             />
             <div className="title">
-              <h2>
-                {weatherData.location.name} - {weatherData.location.region} -{" "}
-                {""}
-                {weatherData.location.country}
-              </h2>
+              {title.length > 0 && (
+                <>
+                  <div className="marquee">
+                    {title.map((text) => {
+                      return <h2>{text}</h2>;
+                    })}
+                  </div>
+                  <div className="outline">
+                    {title.map((text) => {
+                      return <h2>{text}</h2>;
+                    })}
+                  </div>
+                </>
+              )}
             </div>
             <div className="datetime">
-              <h3 className="time">{currentTime}</h3>
-              <h3 className="date">
-                {new Date().toDateString().slice(0, 10)}
-              </h3>
+              <div className="datetime-text">
+                <h3 className="time">{currentTime}</h3>
+                <h3 className="date">
+                  {new Date().toDateString().slice(0, 10)}
+                </h3>
+              </div>
+              <div className="datetime-outline">
+                <h3 className="time-outline">{currentTime}</h3>
+                <h3 className="date-outline">
+                  {new Date().toDateString().slice(0, 10)}
+                </h3>
+              </div>
             </div>
           </div>
           <Forecast data={weatherData.forecast} />
+          <AudioPlayer />
         </>
       ) : (
         ""

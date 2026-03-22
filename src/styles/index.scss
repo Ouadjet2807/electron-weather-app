@@ -7,6 +7,39 @@
   --text-shadow: 2px 2px #740000;
 }
 
+$vt323: "VT323";
+$s4000-ex: "Star 4000 Extended";
+$s4000-lg-c-n: "Star 4000 Large Compressed Numbers";
+$s4000-lg-c: "Star 4000 Large Compressed";
+$s4000-lg: "Star 4000 Large";
+$s4000-sm: "Star 4000 Small";
+$s4000: "Star 4000";
+$s4000-r: "Star 4000 Radar";
+$s3000-ex: "Star 3000 Extended";
+$s3000-ex-h: "Star 3000 Extended Heavy";
+$s3000-ex-lg: "Star 3000 Extra Large";
+$s3000-h: "Star 3000 Heavy";
+$s3000-lg-h: "Star 3000 Large Heavy";
+$s3000-lg: "Star 3000 Large";
+$s3000-sm-h: "Star 3000 Small Heavy";
+$s3000-sm: "Star 3000 Small";
+$s3000-out: "Star 3000 Outline";
+$s3000-out-sm: "Star 3000 Small Outline";
+$s3000-out-lg: "Star 3000 Large Outline";
+$s3000: "Star 3000";
+$sjr-lg-c: "Star Jr Large Compressed";
+$sjr-sm: "Star Jr Small";
+$sjr: "Star Jr";
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 @font-face {
   font-family: "Pixelify Sans";
   src: url("/Assets/Fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf");
@@ -15,6 +48,64 @@
 @font-face {
   font-family: "VT323";
   src: url("/Assets/Fonts/VT323/VT323-Regular.ttf");
+}
+@font-face {
+  font-family: "Star 3000";
+  src: url("/Assets/Fonts/Star3000/Star3000.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Extended";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Extended.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Extended Heavy";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Extended\_Heavy.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Extra Large";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Extra\_Large.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Large.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large Heavy";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Large\_Heavy.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Large";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Large.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Heavy";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Heavy.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Small Heavy";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Small\_Heavy.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Small";
+  src: url("/Assets/Fonts/Star3000/Star3000\ Small.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Outline";
+  src: url("/Assets/Fonts/Star3000/Outlines/Star3000\ Outline.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Small Outline";
+  src: url("/Assets/Fonts/Star3000/Outlines/Star3000\ Small\ Outline.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large Outline";
+  src: url("/Assets/Fonts/Star3000/Outlines/Star3000\ Large\ Outline.ttf");
 }
 @font-face {
   font-family: "Star 4000";
@@ -50,6 +141,11 @@
   src: url("/Assets/Fonts/Star4000/Star\ 4\ Radar.ttf");
 }
 
+@font-face {
+  font-family: "Star Jr Large";
+  src: url("/Assets/Fonts/StarJR/StarJR\ Large\ Compressed.ttf");
+}
+
 html {
   height: stretch;
   background: var(--blue-bg);
@@ -66,7 +162,7 @@ html {
     flex-direction: column;
     gap: 10px;
 
-    button {
+    button, audio {
       app-region: no-drag;
     }
 
@@ -74,16 +170,31 @@ html {
       font-family: "Star 4000 Extended";
       margin: 0;
       color: white;
+      text-shadow: var(--text-shadow);
     }
 
-    h2 {
-      font-family: "VT323";
-      margin: 0;
-      color: white;
-    }
-
+    h1,
+    h2,
     h3 {
       margin: 0;
+      color: white;
+      //   text-shadow: var(--text-shadow);
+    }
+
+    .h2-outline {
+      font-family: $s3000-out;
+      position: absolute;
+      color: black;
+    }
+    .h2-outline-lg {
+      font-family: $s3000-out-lg;
+      position: absolute;
+      color: black;
+    }
+    .h2-outline-sm {
+      font-family: $s3000-out-sm;
+      position: absolute;
+      color: black;
     }
 
     .header {
@@ -104,26 +215,77 @@ html {
         align-items: flex-end;
         padding: 10px;
 
-        .time {
+
+        .datetime-text {
+            position: relative;
+            z-index: 10;
+        }
+
+        .datetime-outline {
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .time,
+        .time-outline {
           letter-spacing: 3px;
         }
 
         .time,
         .date {
-          font-family: "Star 4000 Extended";
-          color: white;
-          text-shadow: var(--text-shadow);
-          float: right;
+          font-family: $s3000-sm;
+          color: var(--white);
+   
+        }
+        .time-outline,
+        .date-outline {
+          font-family: $s3000-out-sm;
+          color: black;
+
         }
       }
 
       .title {
+        position: relative;
         background: var(--purple-bg);
         border-radius: 35px;
-        padding: 10px;
+        padding: 10px 20px;
         display: flex;
+        gap: 10px;
         justify-content: center;
         align-items: center;
+        width: 400px;
+        overflow: hidden;
+
+        .outline {
+          position: absolute;
+          font-family: $s3000-out;
+
+          h2 {
+            color: black !important;
+          }
+        }
+
+        .marquee {
+          font-family: $s3000;
+          position: relative;
+          z-index: 10;
+        }
+
+        .marquee,
+        .outline {
+          display: flex;
+          gap: 10px;
+
+          h2 {
+            animation-name: marquee;
+            animation-duration: 15s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            text-wrap-mode: nowrap;
+          }
+        }
       }
     }
 
@@ -137,14 +299,27 @@ html {
         flex-direction: column;
         align-items: center;
         background: var(--purple-bg);
-        padding: 10px 20px;
+        padding: 20px;
         border: 3px solid var(--white);
+        gap: 15px;
 
         .day-date {
-          font-family: "Star 4000 Extended";
-          color: var(--yellow);
-          text-shadow: var(--text-shadow);
           text-transform: uppercase;
+          display: flex;
+          line-height: 35px;
+
+          h2:not(.h2-outline) {
+            font-family: $s3000-lg;
+            position: relative;
+            color: var(--yellow);
+            z-index: 10;
+          }
+
+          .h2-outline {
+            font-family: $s3000-out-lg;
+            position: absolute;
+            color: black;
+          }
         }
 
         .icon {
@@ -152,16 +327,29 @@ html {
         }
 
         .condition {
-          font-family: "Star 4000 Extended";
+          font-family: $sjr-lg-c;
           color: var(--white);
-          text-shadow: var(--text-shadow);
           text-align: center;
+          width: 75%;
+          line-height: 40px;
+          display: flex;
+          position: relative;
+
+          h2:not(.h2-outline-sm) {
+            position: relative;
+            z-index: 10;
+            font-family: $sjr-lg-c;
+            text-shadow: 3px 3px black;
+          }
         }
 
         .temperatures {
           display: grid;
           grid-template-columns: 50% 50%;
           gap: 10px;
+          line-height: 40px;
+          font-family: $sjr-lg-c;
+              width: 80%;
 
           > div {
             display: flex;
@@ -170,8 +358,7 @@ html {
             color: var(--white);
 
             h2 {
-              font-family: "Star 4000 Extended";
-              text-shadow: var(--text-shadow);
+              font-size: 5vw;
             }
           }
         }

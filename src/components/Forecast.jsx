@@ -52,7 +52,7 @@ export default function Forecast({ data, loading }) {
       case 1009:
       case 1030:
       case 1063:
-        return "Scattered-Showers"
+        return "Scattered-Showers";
       case 1066:
       case 1069:
       case 1072:
@@ -107,23 +107,28 @@ export default function Forecast({ data, loading }) {
         data.forecastday.map((day) => {
           return (
             <div className="day">
-              <h2 className="day-date">
-                {new Date(day.date).toDateString().slice(0, 4)}
-              </h2>
+              <div className="day-date">
+                <h2>{new Date(day.date).toDateString().slice(0, 4)}</h2>
+                <h2 className="h2-outline">
+                  {new Date(day.date).toDateString().slice(0, 4)}
+                </h2>
+              </div>
               <div className="icon">
                 <img
                   src={`../Assets/Icons/${renderIcon(day.day.condition.code)}.gif`}
                 />
               </div>
-              <h2 className="condition">{day.day.condition.text}</h2>
+              <div className="condition">
+                <h2>{day.day.condition.text}</h2>
+              </div>
               <div className="temperatures">
                 <div className="lo">
-                  <h2>LO</h2>
-                  <h2>{day.day.mintemp_c}°</h2>
+                  <h3>Lo</h3>
+                  <h2>{Math.round(day.day.mintemp_c)}</h2>
                 </div>
                 <div className="hi">
-                  <h2>HI</h2>
-                  <h2>{day.day.maxtemp_c}°</h2>
+                  <h3>Hi</h3>
+                  <h2>{Math.round(day.day.maxtemp_c)}</h2>
                 </div>
               </div>
             </div>
