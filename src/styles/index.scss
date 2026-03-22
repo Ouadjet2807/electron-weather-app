@@ -1,0 +1,181 @@
+:root {
+  --blue-bg: #0000ff5e;
+  --vibrant-blue: #0002ff;
+  --purple-bg: #7c73ff66;
+  --white: #fffcf6;
+  --yellow: #ffba26;
+  --text-shadow: 2px 2px #740000;
+}
+
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url("/Assets/Fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "VT323";
+  src: url("/Assets/Fonts/VT323/VT323-Regular.ttf");
+}
+@font-face {
+  font-family: "Star 4000";
+  src: url("/Assets/Fonts/Star4000/Star4000.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Extended";
+  src: url("/Assets/Fonts/Star4000/Star4000\ Extended.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Large";
+  src: url("/Assets/Fonts/Star4000/Star4000\ Large.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Large Compressed";
+  src: url("/Assets/Fonts/Star4000/Star4000\ Large\ Compressed.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Large Compressed Numbers";
+  src: url("/Assets/Fonts/Star4000/Star4000\ Large\ Compressed\ Numbers.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Small";
+  src: url("/Assets/Fonts/Star4000/Star4000\ Small.ttf");
+}
+@font-face {
+  font-family: "Star 4000 Radar";
+  src: url("/Assets/Fonts/Star4000/Star\ 4\ Radar.ttf");
+}
+
+html {
+  height: stretch;
+  background: var(--blue-bg);
+  padding: 20px;
+  box-shadow:
+    inset 0px 0px 42px #ffffff6e,
+    inset 0px 0px 10px 1px #0002ff;
+  border: 3px solid #1400ff;
+  border-radius: 15px;
+
+  body {
+    app-region: drag;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    button {
+      app-region: no-drag;
+    }
+
+    h1 {
+      font-family: "Star 4000 Extended";
+      margin: 0;
+      color: white;
+    }
+
+    h2 {
+      font-family: "VT323";
+      margin: 0;
+      color: white;
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0px 0px 10px 0px;
+      justify-content: space-between;
+
+      .logo {
+        width: 15%;
+      }
+
+      .datetime {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-end;
+        padding: 10px;
+
+        .time {
+          letter-spacing: 3px;
+        }
+
+        .time,
+        .date {
+          font-family: "Star 4000 Extended";
+          color: white;
+          text-shadow: var(--text-shadow);
+          float: right;
+        }
+      }
+
+      .title {
+        background: var(--purple-bg);
+        border-radius: 35px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .forecast-container {
+      display: grid;
+      grid-template-columns: 32% 32% 32%;
+      gap: 15px;
+
+      .day {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: var(--purple-bg);
+        padding: 10px 20px;
+        border: 3px solid var(--white);
+
+        .day-date {
+          font-family: "Star 4000 Extended";
+          color: var(--yellow);
+          text-shadow: var(--text-shadow);
+          text-transform: uppercase;
+        }
+
+        .icon {
+          height: 18vh;
+        }
+
+        .condition {
+          font-family: "Star 4000 Extended";
+          color: var(--white);
+          text-shadow: var(--text-shadow);
+          text-align: center;
+        }
+
+        .temperatures {
+          display: grid;
+          grid-template-columns: 50% 50%;
+          gap: 10px;
+
+          > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--white);
+
+            h2 {
+              font-family: "Star 4000 Extended";
+              text-shadow: var(--text-shadow);
+            }
+          }
+        }
+      }
+    }
+  }
+}
