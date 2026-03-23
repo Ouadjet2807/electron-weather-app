@@ -10,15 +10,6 @@ export default function App() {
   const [currentTime, setCurrentTime] = useState();
   const [title, setTitle] = useState([]);
 
-  const success = (pos) => {
-    const crd = pos.coords;
-
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-  };
-
   useEffect(() => {
     const getLocation = async () => {
       const IP = await publicIpv4();
@@ -32,11 +23,10 @@ export default function App() {
     };
     const fetchWeatherData = async () => {
       const city = await getLocation();
-      console.log(city);
 
       try {
         const response = await axios.get(
-          `http://api.weatherapi.com/v1/forecast.json?key=ad411884f54a440c90c120644262103&q=${city}&days=3`,
+          `http://api.weatherapi.com/v1/forecast.json?key=ad411884f54a440c90c120644262103&q=Lepuix&days=3`,
         );
         setWeatherData(response.data);
         setLoading(false);
@@ -65,8 +55,6 @@ export default function App() {
     }
   }, [weatherData]);
 
-  console.log(weatherData);
-  console.log(title);
 
   return (
     <div>

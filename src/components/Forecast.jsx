@@ -37,10 +37,8 @@ export default function Forecast({ data, loading }) {
     { name: "Wintry Mix", file: "../Assets/1992 EF/Wintry-Mix.gif" },
   ];
 
-  console.log(data);
-
   const renderIcon = (code) => {
-    console.log(code);
+    // console.log(code);
 
     switch (code) {
       case 1000:
@@ -99,7 +97,6 @@ export default function Forecast({ data, loading }) {
     }
   };
 
-  console.log(loading);
 
   return (
     <div className="forecast-container">
@@ -115,7 +112,7 @@ export default function Forecast({ data, loading }) {
               </div>
               <div className="icon">
                 <img
-                  src={`../Assets/Icons/${renderIcon(day.day.condition.code)}.gif`}
+                  src={`../Assets/Icons/weather_icons/${renderIcon(day.day.condition.code)}.gif`}
                 />
               </div>
               <div className="condition">
