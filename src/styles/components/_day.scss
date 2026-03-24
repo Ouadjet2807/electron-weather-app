@@ -1,0 +1,144 @@
+.day-container {
+  display: grid;
+  grid-template-columns: 62% 38%;
+  justify-items: center;
+
+  .current-weather {
+    width: 85%;
+    position: relative;
+    z-index: 10;
+    .header {
+      .date {
+        text-transform: uppercase;
+        display: flex;
+        line-height: 35px;
+
+        h2:not(.h2-outline) {
+          font-family: $s3000-lg;
+          position: relative;
+          color: var(--yellow);
+          z-index: 10;
+        }
+
+        .h2-outline {
+          font-family: $s3000-out-lg;
+          position: absolute;
+          color: black;
+        }
+      }
+
+      .back {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        background: none;
+        border: 2px solid var(--white);
+        padding: 5px;
+
+        .text {
+          font-family: $s3000;
+          position: relative;
+          z-index: 10;
+          color: var(--white);
+        }
+
+        .outline {
+          font-family: $s3000-out;
+          color: black;
+          position: absolute;
+        }
+      }
+    }
+
+    .icon-current {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 35px;
+
+      .icon {
+        img {
+          width: 20vw;
+        }
+      }
+    }
+
+    .condition {
+      font-family: $sjr-lg-c;
+      color: var(--white);
+      text-align: center;
+      line-height: 40px;
+      display: flex;
+      position: relative;
+      height: 10vw;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+
+      h2 {
+        position: relative;
+        z-index: 10;
+        font-family: $sjr-lg-c;
+        text-shadow: 3px 3px black;
+      }
+    }
+
+    .temp_plus_wind {
+      font-family: $sjr-lg-c;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .hours {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: max-content;
+    background: var(--purple-bg);
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+
+    .half {
+      display: flex;
+      flex-direction: column;
+
+      .hour {
+        display: grid;
+        grid-template-columns: 35% 25% 20%;
+        gap: 10px;
+        height: 4vh;
+        font-family: $sjr;
+
+        .time,
+        .temp {
+          position: relative;
+          display: flex;
+
+          .text {
+            position: relative;
+            z-index: 10;
+            font-family: $s3000;
+            color: var(--white);
+          }
+
+          .outline {
+            position: absolute;
+            font-family: $s3000-out;
+            color: black;
+          }
+        }
+
+        .temp {
+          justify-content: flex-end;
+        }
+
+        .icon {
+          img {
+            width: 3vw;
+          }
+        }
+      }
+    }
+  }
+}

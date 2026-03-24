@@ -1,6 +1,9 @@
 .app {
   position: relative;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .h2-outline {
     font-family: $s3000-out;
@@ -45,7 +48,6 @@
 
     .cloud {
       position: absolute;
-      animation-name: marquee;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
     }

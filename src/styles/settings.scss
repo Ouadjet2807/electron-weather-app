@@ -40,6 +40,23 @@ $sjr: "Star Jr";
   }
 }
 
+@keyframes wind_w {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes wind_e {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @keyframes starShine {
   0% {
     transform: scale(0.5);
@@ -173,6 +190,10 @@ html {
   border-radius: 15px;
   overflow: hidden;
 
+  body, .root, .app {
+        height: 100%;
+  }
+
   body {
     app-region: drag;
     display: flex;
@@ -180,6 +201,10 @@ html {
     gap: 10px;
     margin: 0;
     transition: 0.3s ease-in;
+
+    button {
+      cursor: pointer;
+    }
 
     button,
     audio {

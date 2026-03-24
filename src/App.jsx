@@ -4,6 +4,7 @@ import Forecast from "./components/Forecast";
 import { publicIp, publicIpv4, publicIpv6 } from "public-ip";
 import AudioPlayer from "./components/AudioPlayer";
 import CurrentTime from "./components/CurrentTime";
+import Day from "./components/Day";
 
 export default function App() {
   const [weatherData, setWeatherData] = useState({});
@@ -12,6 +13,7 @@ export default function App() {
   const [title, setTitle] = useState([]);
   const [timeOfDay, setTimeOfDay] = useState("day");
   const [hour, setHour] = useState(0);
+  const [selectedDay, setSelectedDay] = useState(null)
 
   const renderStars = () => {
 
@@ -71,10 +73,10 @@ export default function App() {
     let saturation = 0;
 
     switch (true) {
-      case hour >= 17 && hour < 22:
+      case hour >= 18 && hour < 22:
         saturation = saturation = 1 / (hour / 10);
         break;
-      case hour >= 9 && hour < 17:
+      case hour >= 9 && hour < 18:
         saturation = 0;
         break;
       case hour > 5 && hour < 9:
@@ -102,6 +104,7 @@ export default function App() {
         opacity: opacity,
         brightness: brightness,
         animation_duration: animation_duration,
+        animation_name: weatherData.current.wind_dir == "W" ? "wind_w" : "wind_e"
       };
       divs.push(cloud);
     }
@@ -122,11 +125,91 @@ export default function App() {
             animationDuration: `${cloud.animation_duration}s`,
             filter: `brightness(${cloud.brightness}) saturate(${saturation})`,
             opacity: cloud.opacity,
+            animationName: cloud.animation_name
           }}
           src={`/Assets/Icons/cloud_${Math.round(Math.random() * (3 - 1)) + 1}.png`}
         ></img>
       );
     });
+  };
+
+  const renderIcon = (code, is_day) => {
+    // console.log(code);
+
+    switch (true) {
+      case code == 1000 && (is_day == null || is_day == 1):
+          return "Sunny";
+      case code == 1000 && is_day == 0:
+        return  "Clear"
+      case code == 1003:
+        return "Partly-Cloudy";
+      case code == 1006:
+        return "Cloudy";
+      case code == 1009:
+        return "Mostly Cloudy";
+      case code == 1030:
+      case code == 1063:
+      case code == 1180:
+      case code == 1240:
+      case code == 1186:
+        return "Scattered-Showers";
+      case code == 1066:
+      case code == 1210:
+        return "Scattered-Snow-Showers";
+      case code == 1069:
+      case code == 1237:
+        return "Snow-Sleet";
+      case code == 1072:
+      case code == 1087:
+      case code == 1114:
+      case code == 1117:
+        return "Blowing-Snow";
+      case code == 1135:
+        return "Fog";
+      case code == 1147:
+      case code == 1150:
+      case code == 1189:
+        return "Showers";
+      case code == 1153:
+      case code == 1168:
+      case code == 1198:
+        return "Freezing-Rain";
+      case code == 1171:
+      case code == 1183:
+      case code == 1192:
+      case code == 1195:
+      case code == 1243:
+      case code == 1246:
+        return "Rain";
+      case code == 1201:
+      case code == 1204:
+      case code == 1207:
+      case code == 1252:
+      case code == 1264:
+        return "Freezing-Rain-Sleet";
+
+      case code == 1213:
+        return "Light Snow";
+      case code == 1216:
+      case code == 1219:
+      case code == 1222:
+      case code == 1225:
+        return "Heavy-Snow";
+      case code == 1249:
+      case code == 1261:
+        return "Sleet";
+      case code == 1255:
+        return "Rain-Snow";
+      case code == 1258:
+        return "Wintry-Mix";
+      case code == 1273:
+        return "Isolated-Tstorms";
+      case code == 1276:
+        return "Scattered-Tstorms";
+      case code == 1279:
+      case code == 1282:
+        return "ThunderSnow";
+    }
   };
 
   useEffect(() => {
@@ -174,10 +257,10 @@ export default function App() {
       case hour >= 0 && hour < 5:
         setTimeOfDay("night");
         return;
-      case hour >= 17 && hour < 22:
+      case hour >= 18 && hour < 22:
         setTimeOfDay("evening");
         return;
-      case hour >= 9 && hour < 17:
+      case hour >= 9 && hour < 18:
         setTimeOfDay("day");
         return;
       case hour >= 5 && hour < 9:
@@ -225,6 +308,8 @@ export default function App() {
 
   console.log(weatherData);
   console.log(timeOfDay);
+  console.log(selectedDay);
+  
 
   return (
     <div className="app">
@@ -269,7 +354,13 @@ export default function App() {
               </div>
             </div>
           </div>
-          <Forecast data={weatherData.forecast} />
+          {selectedDay == null ? 
+          <Forecast data={weatherData.forecast} setSelectedDay={setSelectedDay} renderIcon={renderIcon}/>
+
+          : 
+
+          <Day current={weatherData.current} hours={weatherData.forecast.forecastday[selectedDay]} renderIcon={renderIcon} setSelectedDay={setSelectedDay}/>
+          }
           <AudioPlayer />
         </>
       ) : (

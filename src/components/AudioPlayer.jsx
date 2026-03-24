@@ -158,9 +158,9 @@ export default function AudioPlayer() {
   }, [currentTime]);
 
   useEffect(() => {
-    audioplayerRef.current.load();
-    audioplayerRef.current.play();
-  }, [currentSongIndex]);
+    audioplayerRef.current.volume = 0.1
+    // audioplayerRef.current.play();
+  }, []);
 
   console.log(currentSongIndex);
 
