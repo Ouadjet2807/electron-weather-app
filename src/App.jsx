@@ -64,7 +64,6 @@ export default function App() {
   }
 
   const renderClouds = () => {
-    console.log(hour);
 
     let divs = [];
 
@@ -108,10 +107,6 @@ export default function App() {
       };
       divs.push(cloud);
     }
-    console.log("render clouds");
-    console.log(divs);
-
-    console.log(window.innerHeight);
 
     return divs.map((cloud) => {
       return (
@@ -134,19 +129,22 @@ export default function App() {
   };
 
   const renderIcon = (code, is_day) => {
-    // console.log(code);
 
     switch (true) {
       case code == 1000 && (is_day == null || is_day == 1):
           return "Sunny";
       case code == 1000 && is_day == 0:
         return  "Clear"
-      case code == 1003:
+      case code == 1003 && (is_day == null || is_day == 1):
         return "Partly-Cloudy";
+      case code == 1003 && is_day == 0:
+        return "Mostly-Clear";
       case code == 1006:
         return "Cloudy";
-      case code == 1009:
+      case code == 1009 && (is_day == null || is_day == 1):
         return "Mostly Cloudy";
+      case code == 1009 && is_day == 0:
+        return "Partly-Clear";
       case code == 1030:
       case code == 1063:
       case code == 1180:
@@ -229,11 +227,10 @@ export default function App() {
 
       try {
         const response = await axios.get(
-          `http://api.weatherapi.com/v1/forecast.json?key=ad411884f54a440c90c120644262103&q=Lepuix&days=3`,
+          `http://api.weatherapi.com/v1/forecast.json?key=ad411884f54a440c90c120644262103&q=${city}&days=3`,
         );
         setWeatherData(response.data);
         setLoading(false);
-        // temperatureValue.innerText = response.data.current.temp_c
       } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
       }
@@ -282,10 +279,6 @@ export default function App() {
   }, [hour]);
 
   useEffect(() => {
-    console.log();
-    console.log(100 / ((23 - hour) * 0.5));
-    let percent = (100 * (12 - hour)) / 12
-    console.log(percent);
 
     if (timeOfDay == "morning") {
       document.querySelector("body").style.background =
@@ -304,11 +297,6 @@ export default function App() {
           `linear-gradient(0deg, #0a005a8f ${24-hour}%, #1600428f ${(24-hour) * 3}%, #1e00f28f ${80 + Math.sqrt(hour)}%)`;
     }
   }, [timeOfDay, hour]);
-
-
-  console.log(weatherData);
-  console.log(timeOfDay);
-  console.log(selectedDay);
   
 
   return (

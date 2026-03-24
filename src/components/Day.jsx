@@ -8,7 +8,7 @@ export default function Day({ current, hours, renderIcon, setSelectedDay }) {
       <div className="current-weather">
         <div className="header">
           <button className="back" onClick={() => setSelectedDay(null)}>
-            {" "}
+          
             <div className="text">Retour</div>{" "}
             <div className="outline">Retour</div>
           </button>
@@ -21,17 +21,27 @@ export default function Day({ current, hours, renderIcon, setSelectedDay }) {
             </h2>
           </div>
         </div>
-          <div div className="icon-current">
-            <div className="icon">
-              <img
-                src={`../Assets/Icons/weather_icons/${renderIcon(current.condition.code, current.is_day)}.gif`}
-              />
-            </div>
+        <div div className="icon-current">
+          <div className="icon">
+            <img
+              src={`../Assets/Icons/weather_icons/${renderIcon(current.condition.code, current.is_day)}.gif`}
+            />
           </div>
-        <div className="condition"><h2>{current.condition.text}</h2></div>
+        </div>
+        <div className="condition">
+          <h2>{current.condition.text}</h2>
+        </div>
         <div className="temp_plus_wind">
           <h2 className="temp">{current.temp_c}°</h2>
-          <h2 className="wind">{current.wind_kph}km/h</h2>
+          <h2 className="wind">
+            {" "}
+            <img
+              className="wind-icon"
+              src="/Assets/Icons/weather_icons/Windy.gif"
+              alt=""
+            />
+            {current.wind_kph}km/h
+          </h2>
         </div>
       </div>
       <div className="hours">

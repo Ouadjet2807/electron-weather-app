@@ -87,6 +87,16 @@
       font-family: $sjr-lg-c;
       display: flex;
       justify-content: space-between;
+
+      .wind {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+            width: 5vw;
+        }
+    }
     }
   }
 

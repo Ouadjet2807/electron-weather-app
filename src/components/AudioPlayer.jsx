@@ -46,10 +46,24 @@ export default function AudioPlayer() {
     },
   ];
 
-
-
   const audioplayerRef = useRef();
   const progressRef = useRef();
+
+  const handleVolumeBar = () => {
+    console.log("change");
+    
+    if (showVolumeBar && volume > 0) {
+      audioplayerRef.current.volume = 0;
+      setVolume(0);
+      setShowVolumeBar(false);
+    } else if (showVolumeBar && volume == 0) {
+      audioplayerRef.current.volume = 0.5;
+      setVolume(0.5);
+      setShowVolumeBar(false);
+    } else {
+      setShowVolumeBar(true)
+    }
+  };
 
   const renderVolumeIcon = () => {
     switch (true) {
@@ -78,6 +92,7 @@ export default function AudioPlayer() {
   };
 
   const handleVolume = (e) => {
+    e.stopPropagation()
     console.log(e.target.value / 100);
     audioplayerRef.current.volume = e.target.value / 100;
     setVolume(e.target.value / 100);
@@ -89,7 +104,6 @@ export default function AudioPlayer() {
 
     let newPos = (100 * pos) / max;
 
-    console.log(audioplayerRef.current.duration * (newPos / 100));
     audioplayerRef.current.currentTime =
       audioplayerRef.current.duration * (newPos / 100);
     setCurrentTime({
@@ -100,7 +114,6 @@ export default function AudioPlayer() {
         (audioplayerRef.current.duration * (newPos / 100)) % 60,
       ),
     });
-    // console.log((duration * 60) + );
 
     setProgressValue();
   };
@@ -145,28 +158,24 @@ export default function AudioPlayer() {
 
     if (doubleLoop) {
       audioplayerRef.current.currentTime = 0;
-      console.log("doubleloop");
     }
     if (!doubleLoop && loop && currentSongIndex == songs.length) {
-      console.log("no double loop, loop");
-
       setCurrentSongIndex(0);
-    } else if (!doubleLoop && !loop && currentSongIndex < songs.length) {
-      console.log("no loop");
+    } else if (!doubleLoop && currentSongIndex < songs.length) {
       setCurrentSongIndex((currentSongIndex + 1) % songs.length);
     }
   }, [currentTime]);
 
   useEffect(() => {
-    audioplayerRef.current.volume = 0.1
-    // audioplayerRef.current.play();
+    audioplayerRef.current.play();
+  }, [currentSongIndex]);
+
+  useEffect(() => {
+    audioplayerRef.current.volume = 0.1;
   }, []);
 
-  console.log(currentSongIndex);
-
   return (
-    <div className="audioplayer-container">
-
+    <div className="audioplayer-container" onClick={showVolumeBar ? () => {setShowVolumeBar(false)} : ""}>
       <audio
         ref={audioplayerRef}
         src={`/Assets/Weather Channel Titles/${songs[currentSongIndex].file}`}
@@ -210,11 +219,11 @@ export default function AudioPlayer() {
             ></div>
             <div
               className={`${showVolumeBar ? "bar-active" : ""} volume`}
-              style={{
-                backgroundImage: `url(/Assets/Icons/${renderVolumeIcon()}.png`,
-              }}
-              onClick={() => setShowVolumeBar(!showVolumeBar)}
+              
             >
+              <div className="volume-icon" style={{
+                backgroundImage: `url(/Assets/Icons/${renderVolumeIcon()}.png`,
+              }} onClick={() => handleVolumeBar()}></div>
               {showVolumeBar && (
                 <input
                   type="range"

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-export default function Forecast({ data, loading, setSelectedDay , renderIcon}) {
+export default function Forecast({
+  data,
+  loading,
+  setSelectedDay,
+  renderIcon,
+}) {
   const icons = [
     { name: "Cloudy", file: "../Assets/1992 EF/Cloudy.gif" },
     { name: "Fog", file: "../Assets/1992 EF/Fog.gif" },
@@ -37,8 +42,6 @@ export default function Forecast({ data, loading, setSelectedDay , renderIcon}) 
     { name: "Wintry Mix", file: "../Assets/1992 EF/Wintry-Mix.gif" },
   ];
 
-  
-
   return (
     <div className="forecast-container">
       {!loading &&
@@ -52,6 +55,11 @@ export default function Forecast({ data, loading, setSelectedDay , renderIcon}) 
                 </h2>
               </div>
               <div className="icon">
+                {day.maxwind_kph > 25 &&
+                <div className="windy">
+                  <img src={"../Assets/Icons/weather_icons/Windy.gif"} />
+                </div>
+                }
                 <img
                   src={`../Assets/Icons/weather_icons/${renderIcon(day.day.condition.code, null)}.gif`}
                 />
