@@ -7,7 +7,7 @@ export default function AudioPlayer() {
   const [doubleLoop, setDoubleLoop] = useState(false);
   const [duration, setDuration] = useState({ minutes: 0, seconds: 0 });
   const [currentTime, setCurrentTime] = useState({ minutes: 0, seconds: 0 });
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5);
   const [progressValue, setProgressValue] = useState(0);
   const [showVolumeBar, setShowVolumeBar] = useState(false);
 
@@ -171,6 +171,7 @@ export default function AudioPlayer() {
         ref={audioplayerRef}
         src={`/Assets/Weather Channel Titles/${songs[currentSongIndex].file}`}
         controls
+        volume={volume}
         loop={doubleLoop}
       ></audio>
 

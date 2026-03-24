@@ -3,14 +3,134 @@ import axios from "axios";
 import Forecast from "./components/Forecast";
 import { publicIp, publicIpv4, publicIpv6 } from "public-ip";
 import AudioPlayer from "./components/AudioPlayer";
+import CurrentTime from "./components/CurrentTime";
 
 export default function App() {
   const [weatherData, setWeatherData] = useState({});
   const [loading, setLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState();
   const [title, setTitle] = useState([]);
+  const [timeOfDay, setTimeOfDay] = useState("day");
+  const [hour, setHour] = useState(0);
+
+  const renderStars = () => {
+
+    let divs = []
+
+     for (let i = 1; i < Math.round(Math.random() * (200 - 150) + 150); i++) {
+      let width = Math.round(Math.random() * (0.6 - 0.3)) + 0.3;
+      let height = width;
+      let top = Math.round(Math.random() * window.innerHeight) - height;
+      let left = Math.round(Math.random() * (window.innerWidth - width));
+      let opacity = Math.random() * (1 - 0.8) + 0.8;  
+      let brightness = Math.random() * (5 - 1) + 1;
+       let animation_delay = Math.random() * (0.5- 0.1) + 0.1;
+       let animation_duration = Math.random() * (3 - 1) + 1;
+
+
+      let star = {
+        width: width,
+        height: height,
+        top: top,
+        left: left,
+        opacity: opacity,
+        brightness: brightness,
+        animation_delay: animation_delay,
+        animation_duration: animation_duration
+      };
+      divs.push(star);
+    }
+
+    return divs.map((star) => {
+      return (
+        <div
+          className="star"
+          style={{
+            width: `${star.width}vw`,
+            height: `${star.height}vw`,
+            top: `${star.top}px`,
+            left: `${star.left}px`,
+            filter: `brightness(${star.brightness})`,
+            opacity: star.opacity,
+            animationDelay: `${star.animation_delay}s`,
+            animationDuration: `${star.animation_duration}s`,
+          }}
+        ></div>
+      );
+    });
+
+  }
+
+  const renderClouds = () => {
+    console.log(hour);
+
+    let divs = [];
+
+    let cloud_number = weatherData.current.cloud;
+    let wind_speed = weatherData.current.wind_kph;
+    let saturation = 0;
+
+    switch (true) {
+      case hour >= 17 && hour < 22:
+        saturation = saturation = 1 / (hour / 10);
+        break;
+      case hour >= 9 && hour < 17:
+        saturation = 0;
+        break;
+      case hour > 5 && hour < 9:
+        saturation = 1 / (hour / 10);
+        break;
+      default:
+        saturation = 0;
+    }
+
+    for (let i = 1; i < cloud_number; i++) {
+      let width = Math.round(Math.random() * (60 - 15)) + 15;
+      let height = Math.round(Math.random() * (20 - 8)) + 8;
+      let top = Math.round(Math.random() * window.innerHeight) - height;
+      let left = Math.round(Math.random() * (window.innerWidth - width));
+      let opacity = Math.random() * (0.5 - 0) + 0;
+      let brightness = Math.random() * (5 - 1) + 1;
+      let animation_duration =
+        (Math.random() * (30 - 5) + 5) / (wind_speed / 10);
+
+      let cloud = {
+        width: width,
+        height: height,
+        top: top,
+        left: left,
+        opacity: opacity,
+        brightness: brightness,
+        animation_duration: animation_duration,
+      };
+      divs.push(cloud);
+    }
+    console.log("render clouds");
+    console.log(divs);
+
+    console.log(window.innerHeight);
+
+    return divs.map((cloud) => {
+      return (
+        <img
+          className="cloud"
+          style={{
+            width: `${cloud.width}vw`,
+            height: `${cloud.height}vw`,
+            top: `${cloud.top}px`,
+            left: `${cloud.left}px`,
+            animationDuration: `${cloud.animation_duration}s`,
+            filter: `brightness(${cloud.brightness}) saturate(${saturation})`,
+            opacity: cloud.opacity,
+          }}
+          src={`/Assets/Icons/cloud_${Math.round(Math.random() * (3 - 1)) + 1}.png`}
+        ></img>
+      );
+    });
+  };
 
   useEffect(() => {
+    setHour(new Date().toTimeString().slice(0,2))
     const getLocation = async () => {
       const IP = await publicIpv4();
 
@@ -36,14 +156,6 @@ export default function App() {
       }
     };
     fetchWeatherData();
-
-    const interval = setInterval(() => {
-      setCurrentTime(new Date().toLocaleTimeString().slice(0, 10));
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
 
   useEffect(() => {
@@ -55,11 +167,71 @@ export default function App() {
     }
   }, [weatherData]);
 
+  useEffect(() => {
+
+    switch (true) {
+      case hour >= 22 && hour < 24:
+      case hour >= 0 && hour < 5:
+        setTimeOfDay("night");
+        return;
+      case hour >= 17 && hour < 22:
+        setTimeOfDay("evening");
+        return;
+      case hour >= 9 && hour < 17:
+        setTimeOfDay("day");
+        return;
+      case hour >= 5 && hour < 9:
+        setTimeOfDay("morning");
+        return;
+      default:
+        setTimeOfDay("day");
+        return;
+    }
+  }, [hour]);
+
+    useEffect(() => {  
+    const interval = setInterval(() => {
+      setHour(new Date().toTimeString().slice(0,2))
+    }, 3600000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [hour]);
+
+  useEffect(() => {
+    console.log();
+    console.log(100 / ((23 - hour) * 0.5));
+    let percent = (100 * (12 - hour)) / 12
+    console.log(percent);
+
+    if (timeOfDay == "morning") {
+      document.querySelector("body").style.background =
+        `linear-gradient(0deg, #ff006b7d ${hour}%, #ff440087 ${hour * 3}%, #0000ff8f ${Math.pow(hour, 2)}%)`;
+    } else if (timeOfDay == "day") {
+      document.querySelector("body").style.background =
+        `linear-gradient(0deg, #5f7efa8f ${hour}%, #4800ff8f ${hour * 3}%, #004dffab ${Math.pow(hour, 2) / 2.5}%)`;
+    } else if (timeOfDay == "evening") {
+        document.querySelector("body").style.background =
+          `linear-gradient(0deg, #ff008b9e ${24-hour}%, #a400ffa1 ${(24-hour) * 3}%, #1f00ff8f ${Math.pow(hour, 2) / 3}%)`;
+        } else if (hour < 22 && timeOfDay == "night") {
+        document.querySelector("body").style.background =
+          `linear-gradient(0deg, #0a005a8f ${15 + Math.pow(hour, 2)}%, #1600428f ${30 + Math.pow(hour, 2)}%, #1e00f28f ${90 + (hour * 2)}%)`;
+    } else {
+             document.querySelector("body").style.background =
+          `linear-gradient(0deg, #0a005a8f ${24-hour}%, #1600428f ${(24-hour) * 3}%, #1e00f28f ${80 + Math.sqrt(hour)}%)`;
+    }
+  }, [timeOfDay, hour]);
+
+
+  console.log(weatherData);
+  console.log(timeOfDay);
 
   return (
-    <div>
+    <div className="app">
       {!loading ? (
         <>
+          <div className="clouds">{renderClouds()}</div>
+          <div className="stars" style={{opacity: `${timeOfDay == 'day' ? 0 : (timeOfDay !== 'day' && (hour > 10 && hour < 24)) ? (0.2 * (hour / 10)) : (1 / hour)}`}}>{renderStars()}</div>
           <div className="header">
             <img
               className="logo"
@@ -84,13 +256,13 @@ export default function App() {
             </div>
             <div className="datetime">
               <div className="datetime-text">
-                <h3 className="time">{currentTime}</h3>
+                <CurrentTime outline={false} />
                 <h3 className="date">
                   {new Date().toDateString().slice(0, 10)}
                 </h3>
               </div>
               <div className="datetime-outline">
-                <h3 className="time-outline">{currentTime}</h3>
+                <CurrentTime outline={true} />
                 <h3 className="date-outline">
                   {new Date().toDateString().slice(0, 10)}
                 </h3>

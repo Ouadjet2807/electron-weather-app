@@ -1,0 +1,144 @@
+.app {
+  position: relative;
+  padding: 20px;
+
+  .h2-outline {
+    font-family: $s3000-out;
+    position: absolute;
+    color: black;
+  }
+  .h2-outline-lg {
+    font-family: $s3000-out-lg;
+    position: absolute;
+    color: black;
+  }
+  .h2-outline-sm {
+    font-family: $s3000-out-sm;
+    position: absolute;
+    color: black;
+  }
+  .stars {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation-name: starShine;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+
+  .clouds {
+    opacity: 0.5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    .cloud {
+      position: absolute;
+      animation-name: marquee;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0px 0px 10px 0px;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+
+    .logo {
+      width: 15%;
+    }
+
+    .datetime {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-end;
+      padding: 10px;
+
+      .datetime-text {
+        position: relative;
+        z-index: 10;
+      }
+
+      .datetime-outline {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .time,
+      .time-outline {
+        letter-spacing: 3px;
+      }
+
+      .time,
+      .date {
+        font-family: $s3000-sm;
+        color: var(--white);
+      }
+      .time-outline,
+      .date-outline {
+        font-family: $s3000-out-sm;
+        color: black;
+      }
+    }
+
+    .title {
+      position: relative;
+      background: var(--purple-bg);
+      border-radius: 35px;
+      padding: 10px 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      width: 400px;
+      overflow: hidden;
+
+      .outline {
+        position: absolute;
+        font-family: $s3000-out;
+
+        h2 {
+          color: black !important;
+        }
+      }
+
+      .marquee {
+        font-family: $s3000;
+        position: relative;
+        z-index: 10;
+      }
+
+      .marquee,
+      .outline {
+        display: flex;
+        gap: 10px;
+
+        h2 {
+          animation-name: marquee;
+          animation-duration: 15s;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+          text-wrap-mode: nowrap;
+        }
+      }
+    }
+  }
+}
