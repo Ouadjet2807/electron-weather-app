@@ -299,6 +299,8 @@ export default function App() {
   }, [timeOfDay, hour]);
   
 
+    console.log(weatherData);
+    
   return (
     <div className="app">
       {!loading ? (

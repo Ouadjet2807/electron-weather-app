@@ -42,7 +42,7 @@ $sjr: "Star Jr";
 
 @keyframes wind_w {
   0% {
-    transform: translateX(0);
+    transform: translateX((50%));
   }
   100% {
     transform: translateX(-100%);
@@ -50,7 +50,7 @@ $sjr: "Star Jr";
 }
 @keyframes wind_e {
   0% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
   100% {
     transform: translateX(100%);

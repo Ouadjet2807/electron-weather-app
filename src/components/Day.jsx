@@ -3,15 +3,21 @@ import React from "react";
 export default function Day({ current, hours, renderIcon, setSelectedDay }) {
   console.log(hours);
 
+  const is_today = current.last_updated.slice(0, 10) == hours.date
+
+  console.log(is_today);
+  
+
   return (
     <div className="day-container">
       <div className="current-weather">
         <div className="header">
           <button className="back" onClick={() => setSelectedDay(null)}>
-          
             <div className="text">Retour</div>{" "}
             <div className="outline">Retour</div>
           </button>
+          <div className="now">
+            <h3>Now</h3>
           <div className="date">
             <h2>
               {new Date(current.last_updated).toDateString().slice(0, 10)}
@@ -20,8 +26,9 @@ export default function Day({ current, hours, renderIcon, setSelectedDay }) {
               {new Date(current.last_updated).toDateString().slice(0, 10)}
             </h2>
           </div>
+          </div>
         </div>
-        <div div className="icon-current">
+        <div className="icon-current">
           <div className="icon">
             <img
               src={`../Assets/Icons/weather_icons/${renderIcon(current.condition.code, current.is_day)}.gif`}
@@ -34,7 +41,6 @@ export default function Day({ current, hours, renderIcon, setSelectedDay }) {
         <div className="temp_plus_wind">
           <h2 className="temp">{current.temp_c}°</h2>
           <h2 className="wind">
-            {" "}
             <img
               className="wind-icon"
               src="/Assets/Icons/weather_icons/Windy.gif"
@@ -45,6 +51,16 @@ export default function Day({ current, hours, renderIcon, setSelectedDay }) {
         </div>
       </div>
       <div className="hours">
+        {!is_today && 
+         <div className="date">
+            <h4>
+              {new Date(hours.date).toDateString().slice(0, 10)}
+            </h4>
+            <h4 className="h4-outline">
+              {new Date(hours.date).toDateString().slice(0, 10)}
+            </h4>
+          </div>
+        }
         <div className="half">
           {hours.hour
             .sort((a, b) => a.time - b.time)

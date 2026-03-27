@@ -49,7 +49,18 @@ export default function AudioPlayer() {
   const audioplayerRef = useRef();
   const progressRef = useRef();
 
-  const handleVolumeBar = () => {
+  const closeVolumeBar = (e) => {
+    console.log(e);
+    
+    if(!showVolumeBar) return 
+
+    console.log(showVolumeBar);
+    
+    setShowVolumeBar(false)
+  }
+
+  const handleVolumeBar = (e) => {
+    e.stopPropagation()
     console.log("change");
     
     if (showVolumeBar && volume > 0) {
@@ -175,7 +186,7 @@ export default function AudioPlayer() {
   }, []);
 
   return (
-    <div className="audioplayer-container" onClick={showVolumeBar ? () => {setShowVolumeBar(false)} : ""}>
+    <div className="audioplayer-container" onClick={(e) => closeVolumeBar(e)} >
       <audio
         ref={audioplayerRef}
         src={`/Assets/Weather Channel Titles/${songs[currentSongIndex].file}`}
@@ -223,7 +234,7 @@ export default function AudioPlayer() {
             >
               <div className="volume-icon" style={{
                 backgroundImage: `url(/Assets/Icons/${renderVolumeIcon()}.png`,
-              }} onClick={() => handleVolumeBar()}></div>
+              }} onClick={(e) => handleVolumeBar(e)}></div>
               {showVolumeBar && (
                 <input
                   type="range"
