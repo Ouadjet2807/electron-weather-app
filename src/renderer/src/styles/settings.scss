@@ -1,0 +1,229 @@
+:root {
+  --blue-bg: #0000ff5e;
+  --vibrant-blue: #0002ff;
+  --purple-bg: #7c73ff66;
+  --white: #fffcf6;
+  --yellow: #ffba26;
+  --text-shadow: 2px 2px #740000;
+}
+
+$vt323: "VT323";
+$s4000-ex: "Star 4000 Extended";
+$s4000-lg-c-n: "Star 4000 Large Compressed Numbers";
+$s4000-lg-c: "Star 4000 Large Compressed";
+$s4000-lg: "Star 4000 Large";
+$s4000-sm: "Star 4000 Small";
+$s4000: "Star 4000";
+$s4000-r: "Star 4000 Radar";
+$s3000-ex: "Star 3000 Extended";
+$s3000-ex-h: "Star 3000 Extended Heavy";
+$s3000-ex-lg: "Star 3000 Extra Large";
+$s3000-h: "Star 3000 Heavy";
+$s3000-lg-h: "Star 3000 Large Heavy";
+$s3000-lg: "Star 3000 Large";
+$s3000-sm-h: "Star 3000 Small Heavy";
+$s3000-sm: "Star 3000 Small";
+$s3000-out: "Star 3000 Outline";
+$s3000-out-sm: "Star 3000 Small Outline";
+$s3000-out-lg: "Star 3000 Large Outline";
+$s3000: "Star 3000";
+$sjr-lg-c: "Star Jr Large Compressed";
+$sjr-sm: "Star Jr Small";
+$sjr: "Star Jr";
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes wind_w {
+  0% {
+    transform: translateX((50%));
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes wind_e {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes starShine {
+  0% {
+    transform: scale(0.5);
+    box-shadow: 0px 0px 5px 0.5px #ffffff59;;
+  }
+  50% {
+    transform: scale(1.1);
+        box-shadow: 0px 0px 5px 1px #ffffffbb;;
+  }
+  100% {
+    transform: scale(0.5);
+        box-shadow: 0px 0px 5px 0.5px #ffffff59;;
+  }
+}
+
+
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url("../assets/Fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "VT323";
+  src: url("../assets/Fonts/VT323/VT323-Regular.ttf");
+}
+@font-face {
+  font-family: "Star 3000";
+  src: url("../assets/Fonts/Star3000/Star3000.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Extended";
+  src: url("../assets/Fonts/Star3000/Star3000\ Extended.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Extended Heavy";
+  src: url("../assets/Fonts/Star3000/Star3000\ Extended\_Heavy.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Extra Large";
+  src: url("../assets/Fonts/Star3000/Star3000\ Extra\_Large.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large";
+  src: url("../assets/Fonts/Star3000/Star3000\ Large.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large Heavy";
+  src: url("../assets/Fonts/Star3000/Star3000\ Large\_Heavy.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Large";
+  src: url("../assets/Fonts/Star3000/Star3000\ Large.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Heavy";
+  src: url("../assets/Fonts/Star3000/Star3000\ Heavy.ttf");
+}
+
+@font-face {
+  font-family: "Star 3000 Small Heavy";
+  src: url("../assets/Fonts/Star3000/Star3000\ Small\_Heavy.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Small";
+  src: url("../assets/Fonts/Star3000/Star3000\ Small.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Outline";
+  src: url("../assets/Fonts/Star3000/Outlines/Star3000\ Outline.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Small Outline";
+  src: url("../assets/Fonts/Star3000/Outlines/Star3000\ Small\ Outline.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large Outline";
+  src: url("../assets/Fonts/Star3000/Outlines/Star3000\ Large\ Outline.ttf");
+}
+@font-face {
+  font-family: "Star 4000";
+  src: url("../assets/Fonts/Star4000/Star4000.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Extended";
+  src: url("../assets/Fonts/Star4000/Star4000\ Extended.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Large";
+  src: url("../assets/Fonts/Star4000/Star4000\ Large.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Large Compressed";
+  src: url("../assets/Fonts/Star4000/Star4000\ Large\ Compressed.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Large Compressed Numbers";
+  src: url("../assets/Fonts/Star4000/Star4000\ Large\ Compressed\ Numbers.ttf");
+}
+
+@font-face {
+  font-family: "Star 4000 Small";
+  src: url("../assets/Fonts/Star4000/Star4000\ Small.ttf");
+}
+@font-face {
+  font-family: "Star 4000 Radar";
+  src: url("../assets/Fonts/Star4000/Star\ 4\ Radar.ttf");
+}
+
+@font-face {
+  font-family: "Star Jr Large";
+  src: url("../assets/Fonts/StarJR/StarJR\ Large\ Compressed.ttf");
+}
+
+html {
+  height: stretch;
+  
+  padding: 0;
+  box-shadow:
+    inset 0px 0px 42px #ffffff6e,
+    inset 0px 0px 10px 1px #0002ff;
+  border: 3px solid #1400ff;
+  border-radius: 15px;
+  overflow: hidden;
+
+  body, #root {
+        height: 100%;
+  }
+
+  body {
+    app-region: drag;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    transition: 0.3s ease-in;
+
+    button {
+      cursor: pointer;
+    }
+
+    button,
+    audio {
+      app-region: no-drag;
+    }
+
+    h1 {
+      font-family: "Star 4000 Extended";
+      margin: 0;
+      color: white;
+      text-shadow: var(--text-shadow);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      color: white;
+      //   text-shadow: var(--text-shadow);
+    }
+  }
+}
