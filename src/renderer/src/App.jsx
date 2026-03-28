@@ -7,6 +7,7 @@ import CurrentTime from "./components/CurrentTime";
 import Day from "./components/Day";
 import Sunny from "./assets/Icons/weather_icons/Sunny.gif"
 import Clear from "./assets/Icons/weather_icons/Clear.gif"
+import Cloudy from "./assets/Icons/weather_icons/Cloudy.gif"
 import PartlyCloudy from "./assets/Icons/weather_icons/Partly-Cloudy.gif"
 import PartlyClear from "./assets/Icons/weather_icons/Partly-Clear.gif"
 import BlowingSnow from "./assets/Icons/weather_icons/Blowing-Snow.gif"
@@ -49,8 +50,6 @@ export default function App() {
   const [timeOfDay, setTimeOfDay] = useState("day");
   const [hour, setHour] = useState(0);
   const [selectedDay, setSelectedDay] = useState(null)
-
-  console.log(weatherData);
   
 
   const renderStars = () => {
@@ -162,13 +161,14 @@ export default function App() {
             opacity: cloud.opacity,
             animationName: cloud.animation_name
           }}
-          src={clouds[Math.round(Math.random() * (3 - 0)) + 0]}
+          src={clouds[Math.round(Math.random() * (2 - 0)) + 0]}
         ></img>
       );
     });
   };
 
   const renderIcon = (code, is_day) => {
+
 
     switch (true) {
       case code == 1000 && (is_day == null || is_day == 1):
@@ -309,7 +309,7 @@ export default function App() {
     }
   }, [hour]);
 
-    useEffect(() => {  
+    useEffect(() => {
     const interval = setInterval(() => {
       setHour(new Date().toTimeString().slice(0,2))
     }, 3600000);
@@ -337,6 +337,7 @@ export default function App() {
           `linear-gradient(0deg, #0a005a8f ${24-hour}%, #1600428f ${(24-hour) * 3}%, #1e00f28f ${80 + Math.sqrt(hour)}%)`;
     }
   }, [timeOfDay, hour]);
+
   
 
   return (

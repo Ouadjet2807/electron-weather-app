@@ -63,7 +63,7 @@ export default function Day({ current, hours, renderIcon, setSelectedDay }) {
                     <div className="outline">{h.temp_c}°</div>
                   </div>
                   <div className="icon">
-                    <img src={renderIcon(current.condition.code, current.is_day)} />
+                    <img src={renderIcon(h.condition.code, h.is_day)} />
                   </div>
                 </div>
               )
@@ -85,7 +85,7 @@ export default function Day({ current, hours, renderIcon, setSelectedDay }) {
                     <div className="outline">{h.temp_c}°</div>
                   </div>
                   <div className="icon">
-                    <img src={renderIcon(current.condition.code, current.is_day)} />
+                    <img src={renderIcon(h.condition.code, h.is_day)} />
                   </div>
                 </div>
               )

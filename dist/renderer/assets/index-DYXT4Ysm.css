@@ -1,0 +1,691 @@
+:root {
+  --blue-bg: #0000ff5e;
+  --vibrant-blue: #0002ff;
+  --purple-bg: #7c73ff66;
+  --white: #fffcf6;
+  --yellow: #ffba26;
+  --text-shadow: 2px 2px #740000;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes wind_w {
+  0% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes wind_e {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes starShine {
+  0% {
+    transform: scale(0.5);
+    box-shadow: 0px 0px 5px 0.5px rgba(255, 255, 255, 0.3490196078);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.7333333333);
+  }
+  100% {
+    transform: scale(0.5);
+    box-shadow: 0px 0px 5px 0.5px rgba(255, 255, 255, 0.3490196078);
+  }
+}
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url("./PixelifySans-VariableFont_wght-BOgNfX6E.ttf");
+}
+@font-face {
+  font-family: "VT323";
+  src: url("./VT323-Regular-BZsogN36.ttf");
+}
+@font-face {
+  font-family: "Star 3000";
+  src: url("./Star3000-CAv5KtH0.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Extended";
+  src: url("./Star3000%20Extended-B2QoPeCp.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Extended Heavy";
+  src: url("../assets/Fonts/Star3000/Star3000 Extended_Heavy.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Extra Large";
+  src: url("../assets/Fonts/Star3000/Star3000 Extra_Large.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large";
+  src: url("./Star3000%20Large-BH6yLO-9.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large Heavy";
+  src: url("../assets/Fonts/Star3000/Star3000 Large_Heavy.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large";
+  src: url("./Star3000%20Large-BH6yLO-9.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Heavy";
+  src: url("./Star3000%20Heavy-DTl5Oltn.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Small Heavy";
+  src: url("../assets/Fonts/Star3000/Star3000 Small_Heavy.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Small";
+  src: url("./Star3000%20Small-CkUocFN9.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Outline";
+  src: url("./Star3000%20Outline-rMlAj38W.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Small Outline";
+  src: url("./Star3000%20Small%20Outline-BPadM6KS.ttf");
+}
+@font-face {
+  font-family: "Star 3000 Large Outline";
+  src: url("./Star3000%20Large%20Outline-OyKlBQ2A.ttf");
+}
+@font-face {
+  font-family: "Star 4000";
+  src: url("./Star4000-BStwWvC8.ttf");
+}
+@font-face {
+  font-family: "Star 4000 Extended";
+  src: url("./Star4000%20Extended-B3MS6HIh.ttf");
+}
+@font-face {
+  font-family: "Star 4000 Large";
+  src: url("./Star4000%20Large-CONM3z8V.ttf");
+}
+@font-face {
+  font-family: "Star 4000 Large Compressed";
+  src: url("./Star4000%20Large%20Compressed-nEksBK7l.ttf");
+}
+@font-face {
+  font-family: "Star 4000 Large Compressed Numbers";
+  src: url("./Star4000%20Large%20Compressed%20Numbers-DZOWDN-f.ttf");
+}
+@font-face {
+  font-family: "Star 4000 Small";
+  src: url("./Star4000%20Small-BLZTxXzL.ttf");
+}
+@font-face {
+  font-family: "Star 4000 Radar";
+  src: url("./Star%204%20Radar-DJouydkb.ttf");
+}
+@font-face {
+  font-family: "Star Jr Large";
+  src: url("./StarJR%20Large%20Compressed-D3avsCRE.ttf");
+}
+html {
+  height: stretch;
+  padding: 0;
+  box-shadow: inset 0px 0px 42px rgba(255, 255, 255, 0.431372549), inset 0px 0px 10px 1px #0002ff;
+  border: 3px solid #1400ff;
+  border-radius: 15px;
+  overflow: hidden;
+}
+html body, html #root {
+  height: 100%;
+}
+html body {
+  app-region: drag;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  transition: 0.3s ease-in;
+}
+html body button {
+  cursor: pointer;
+}
+html body button,
+html body audio {
+  app-region: no-drag;
+}
+html body h1 {
+  font-family: "Star 4000 Extended";
+  margin: 0;
+  color: white;
+  text-shadow: var(--text-shadow);
+}
+html body h1,
+html body h2,
+html body h3 {
+  margin: 0;
+  color: white;
+}
+
+.app {
+  height: 95%;
+  position: relative;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.app .h2-outline {
+  font-family: "Star 3000 Outline";
+  position: absolute;
+  color: black;
+}
+.app .h2-outline-lg {
+  font-family: "Star 3000 Large Outline";
+  position: absolute;
+  color: black;
+}
+.app .h2-outline-sm {
+  font-family: "Star 3000 Small Outline";
+  position: absolute;
+  color: black;
+}
+.app .stars {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.app .stars .star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation-name: starShine;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.app .clouds {
+  opacity: 0.5;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.app .clouds .cloud {
+  position: absolute;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.app .header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0px 0px 10px 0px;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+.app .header .logo {
+  width: 15%;
+}
+.app .header .datetime {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+  padding: 10px;
+}
+.app .header .datetime .datetime-text {
+  position: relative;
+  z-index: 10;
+}
+.app .header .datetime .datetime-outline {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+.app .header .datetime .time,
+.app .header .datetime .time-outline {
+  letter-spacing: 3px;
+}
+.app .header .datetime .time,
+.app .header .datetime .date {
+  font-family: "Star 3000 Small";
+  color: var(--white);
+}
+.app .header .datetime .time-outline,
+.app .header .datetime .date-outline {
+  font-family: "Star 3000 Small Outline";
+  color: black;
+}
+.app .header .title {
+  position: relative;
+  background: var(--purple-bg);
+  border-radius: 35px;
+  padding: 10px 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  overflow: hidden;
+}
+.app .header .title .outline {
+  position: absolute;
+  font-family: "Star 3000 Outline";
+}
+.app .header .title .outline h2 {
+  color: black !important;
+}
+.app .header .title .marquee {
+  font-family: "Star 3000";
+  position: relative;
+  z-index: 10;
+}
+.app .header .title .marquee,
+.app .header .title .outline {
+  display: flex;
+  gap: 10px;
+}
+.app .header .title .marquee h2,
+.app .header .title .outline h2 {
+  animation-name: marquee;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  text-wrap-mode: nowrap;
+}
+
+.forecast-container {
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  gap: 15px;
+  position: relative;
+  z-index: 10;
+}
+.forecast-container .day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--purple-bg);
+  padding: 20px;
+  border: 3px solid var(--white);
+  gap: 15px;
+  app-region: no-drag;
+  cursor: pointer;
+}
+.forecast-container .day .day-date {
+  text-transform: uppercase;
+  display: flex;
+  line-height: 35px;
+}
+.forecast-container .day .day-date h2:not(.h2-outline) {
+  font-family: "Star 3000 Large";
+  position: relative;
+  color: var(--yellow);
+  z-index: 10;
+}
+.forecast-container .day .day-date .h2-outline {
+  font-family: "Star 3000 Large Outline";
+  position: absolute;
+  color: black;
+}
+.forecast-container .day .icon {
+  height: 18vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.forecast-container .day .icon .windy {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  margin-top: 7vw;
+  margin-left: 5vw;
+}
+.forecast-container .day .condition {
+  font-family: "Star Jr Large Compressed";
+  color: var(--white);
+  text-align: center;
+  line-height: 40px;
+  display: flex;
+  position: relative;
+  height: 10vw;
+  align-items: center;
+}
+.forecast-container .day .condition h2 {
+  position: relative;
+  z-index: 10;
+  font-family: "Star Jr Large Compressed";
+  text-shadow: 3px 3px black;
+}
+.forecast-container .day .temperatures {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+  line-height: 40px;
+  font-family: "Star Jr Large Compressed";
+  width: 80%;
+}
+.forecast-container .day .temperatures > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--white);
+}
+.forecast-container .day .temperatures > div h2 {
+  font-size: 5vw;
+}
+
+.audioplayer-container {
+  display: grid;
+  align-items: end;
+  margin: 5px 0;
+  position: relative;
+  z-index: 10;
+}
+.audioplayer-container audio {
+  display: none;
+}
+.audioplayer-container .player {
+  display: grid;
+  grid-template-columns: 32% 66%;
+  gap: 15px;
+  align-items: end;
+}
+.audioplayer-container .player .left-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 5px 0;
+}
+.audioplayer-container .player .left-container .timer {
+  display: flex;
+  gap: 10px;
+  font-family: "Star 3000 Small";
+  color: var(--white);
+}
+.audioplayer-container .player .left-container .controls {
+  display: flex;
+  gap: 5px;
+  app-region: no-drag;
+  grid-column: 1;
+  margin-bottom: 1px;
+  justify-content: center;
+}
+.audioplayer-container .player .left-container .controls > div {
+  width: 2vw;
+  height: 2vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+  position: relative;
+}
+.audioplayer-container .player .left-container .controls > div:not(.bar-active):hover {
+  transform: scale(1.1);
+}
+.audioplayer-container .player .left-container .controls > div.volume .volume-icon {
+  cursor: pointer;
+  transition: 0.3s ease-in;
+  position: relative;
+  width: 2vw;
+  height: 2vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.audioplayer-container .player .left-container .controls > div.volume input {
+  position: absolute;
+  transform: rotate(270deg);
+  top: -5vw;
+  left: -3.2vw;
+  filter: contrast(1.5) brightness(7);
+  box-shadow: 0px 0px 5px 12px rgba(255, 255, 255, 0.1215686275);
+  height: 0.5vw;
+  width: 8vw;
+  app-region: no-drag;
+  cursor: pointer;
+}
+.audioplayer-container .player .left-container h4 {
+  margin: 0;
+  font-family: "Star Jr Small";
+  color: var(--white);
+  grid-column: 1/3;
+  padding: 0 2vw;
+}
+.audioplayer-container .player .tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+.audioplayer-container .player .tracker .player-marquee {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 4vw;
+}
+.audioplayer-container .player .tracker .player-marquee .marquee-container,
+.audioplayer-container .player .tracker .player-marquee .marquee-outline {
+  display: flex;
+  width: 300px;
+  gap: 35px;
+}
+.audioplayer-container .player .tracker .player-marquee .marquee-container p,
+.audioplayer-container .player .tracker .player-marquee .marquee-outline p {
+  text-wrap-mode: nowrap;
+  animation-name: marquee;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  margin: 5px;
+}
+.audioplayer-container .player .tracker .player-marquee .marquee-container {
+  position: relative;
+  z-index: 10;
+}
+.audioplayer-container .player .tracker .player-marquee .marquee-container p {
+  font-family: "Star 3000 Small";
+  color: var(--white);
+}
+.audioplayer-container .player .tracker .player-marquee .marquee-outline {
+  position: absolute;
+}
+.audioplayer-container .player .tracker .player-marquee .marquee-outline p {
+  font-family: "Star 3000 Small Outline";
+  color: black;
+}
+.audioplayer-container .player progress {
+  appearance: none;
+  height: 0.4vw;
+  width: 100%;
+  app-region: no-drag;
+  cursor: pointer;
+}
+.audioplayer-container .player ::-webkit-progress-bar {
+  background: transparent;
+}
+.audioplayer-container .player ::-webkit-progress-value {
+  background: var(--white);
+}
+
+.day-container {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  justify-items: center;
+}
+.day-container .current-weather {
+  width: 85%;
+  position: relative;
+  z-index: 10;
+}
+.day-container .current-weather .header .now {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.day-container .current-weather .header .now h3 {
+  font-family: "Star Jr";
+}
+.day-container .current-weather .header .now .date {
+  text-transform: uppercase;
+  display: flex;
+  line-height: 35px;
+}
+.day-container .current-weather .header .now .date h2:not(.h2-outline) {
+  font-family: "Star 3000 Large";
+  position: relative;
+  color: var(--yellow);
+  z-index: 10;
+}
+.day-container .current-weather .header .now .date .h2-outline {
+  font-family: "Star 3000 Large Outline";
+  position: absolute;
+  color: black;
+}
+.day-container .current-weather .header .back {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  background: none;
+  border: 2px solid var(--white);
+  padding: 5px;
+}
+.day-container .current-weather .header .back .text {
+  font-family: "Star 3000";
+  position: relative;
+  z-index: 10;
+  color: var(--white);
+}
+.day-container .current-weather .header .back .outline {
+  font-family: "Star 3000 Outline";
+  color: black;
+  position: absolute;
+}
+.day-container .current-weather .icon-current {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px;
+}
+.day-container .current-weather .icon-current .icon img {
+  width: 20vw;
+}
+.day-container .current-weather .condition {
+  font-family: "Star Jr Large Compressed";
+  color: var(--white);
+  text-align: center;
+  line-height: 40px;
+  display: flex;
+  position: relative;
+  height: 10vw;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.day-container .current-weather .condition h2 {
+  position: relative;
+  z-index: 10;
+  font-family: "Star Jr Large Compressed";
+  text-shadow: 3px 3px black;
+}
+.day-container .current-weather .temp_plus_wind {
+  font-family: "Star Jr Large Compressed";
+  display: flex;
+  justify-content: space-between;
+}
+.day-container .current-weather .temp_plus_wind .wind {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.day-container .current-weather .temp_plus_wind .wind img {
+  width: 5vw;
+}
+.day-container .hours {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 85%;
+  height: max-content;
+  background: var(--purple-bg);
+  padding: 15px 20px;
+  position: relative;
+  z-index: 10;
+  gap: 10px 0;
+}
+.day-container .hours .date {
+  text-transform: uppercase;
+  display: flex;
+  grid-column: 1/3;
+  justify-content: center;
+}
+.day-container .hours .date h4 {
+  margin: 0;
+}
+.day-container .hours .date h4:not(.h4-outline) {
+  font-family: "Star 3000";
+  position: relative;
+  color: var(--yellow);
+  z-index: 10;
+}
+.day-container .hours .date .h4-outline {
+  font-family: "Star 3000 Outline";
+  position: absolute;
+  color: black;
+}
+.day-container .hours .half {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.day-container .hours .half .hour {
+  display: grid;
+  grid-template-columns: 35% 25% 20%;
+  gap: 10px;
+  height: 4vh;
+  font-family: "Star Jr";
+}
+.day-container .hours .half .hour .time,
+.day-container .hours .half .hour .temp {
+  position: relative;
+  display: flex;
+}
+.day-container .hours .half .hour .time .text,
+.day-container .hours .half .hour .temp .text {
+  position: relative;
+  z-index: 10;
+  font-family: "Star 3000";
+  color: var(--white);
+}
+.day-container .hours .half .hour .time .outline,
+.day-container .hours .half .hour .temp .outline {
+  position: absolute;
+  font-family: "Star 3000 Outline";
+  color: black;
+}
+.day-container .hours .half .hour .temp {
+  justify-content: flex-end;
+}
+.day-container .hours .half .hour .icon img {
+  width: 3vw;
+}

@@ -1,6 +1,6 @@
 .day-container {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 55% 45%;
   justify-items: center;
 
   .current-weather {
@@ -114,7 +114,7 @@
   .hours {
     display: grid;
     grid-template-columns: 50% 50%;
-    width: max-content;
+    width: 85%;
     height: max-content;
     background: var(--purple-bg);
     padding: 15px 20px;
