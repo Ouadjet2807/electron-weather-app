@@ -36,7 +36,7 @@ import WintryMix from "./assets/Icons/weather_icons/Wintry-Mix.gif"
 import CloudOne from "./assets/Icons/cloud_1.png"
 import CloudTwo from "./assets/Icons/cloud_2.png"
 import CloudThree from "./assets/Icons/cloud_3.png"
-import Logo from "./assets/The_Weather_Channel-Logo.png"
+import Logo from "./assets/logo.png"
 
 
 

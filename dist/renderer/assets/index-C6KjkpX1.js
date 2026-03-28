@@ -15624,7 +15624,7 @@ const WintryMix = "" + new URL("Wintry-Mix-CyFeeSUX.gif", import.meta.url).href;
 const CloudOne = "" + new URL("cloud_1-CXMyR8e6.png", import.meta.url).href;
 const CloudTwo = "" + new URL("cloud_2-LVnnRP97.png", import.meta.url).href;
 const CloudThree = "" + new URL("cloud_3-D-StMnKd.png", import.meta.url).href;
-const Logo = "" + new URL("The_Weather_Channel-Logo-DUnFyscZ.png", import.meta.url).href;
+const Logo = "" + new URL("logo-CgNHXYm1.png", import.meta.url).href;
 function App() {
   const [weatherData, setWeatherData] = reactExports.useState({});
   const [loading, setLoading] = reactExports.useState(true);
