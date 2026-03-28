@@ -12,7 +12,7 @@ export default function Day({ current, hours, renderIcon, setSelectedDay }) {
       <div className="current-weather">
         <div className="header">
           <button className="back" onClick={() => setSelectedDay(null)}>
-            <div className="text">Retour</div> <div className="outline">Back</div>
+            <div className="text">Back</div> <div className="outline">Back</div>
           </button>
           <div className="now">
             <h3>Now</h3>

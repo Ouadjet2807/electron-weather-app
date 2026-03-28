@@ -15526,7 +15526,7 @@ function Day({ current, hours, renderIcon, setSelectedDay }) {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "current-weather", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "header", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { className: "back", onClick: () => setSelectedDay(null), children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text", children: "Retour" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text", children: "Back" }),
           " ",
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "outline", children: "Back" })
         ] }),
