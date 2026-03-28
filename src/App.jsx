@@ -310,7 +310,7 @@ export default function App() {
           <div className="header">
             <img
               className="logo"
-              src="/Assets/The_Weather_Channel-Logo.png"
+              src="/Assets/logo.png"
               alt=""
             />
             <div className="title">
