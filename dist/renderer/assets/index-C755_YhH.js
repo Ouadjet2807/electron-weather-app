@@ -15528,7 +15528,7 @@ function Day({ current, hours, renderIcon, setSelectedDay }) {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { className: "back", onClick: () => setSelectedDay(null), children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text", children: "Retour" }),
           " ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "outline", children: "Retour" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "outline", children: "Back" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "now", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Now" }),
